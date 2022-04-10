@@ -18,9 +18,10 @@ app.use(
 );
 
 app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "/client/build", "index.html")
-  );
+  
+    const index = path.join(__dirname, "/client/build", "index.html")
+     res.sendFile(index);
+
 });
 mongoose
   .connect(process.env.MONGO_URL, {
