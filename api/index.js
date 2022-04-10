@@ -13,7 +13,15 @@ dotenv.config();
 app.use(express.json()); // allow data is format json.
 
 app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use(
+  express.static(path.join(__dirname, "/client/build"))
+);
 
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "/client/build", "index.html")
+  );
+});
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
